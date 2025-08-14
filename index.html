@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Que Fazer em GV - Descubra Governador Valadares</title>
+    <meta name="description"
+        content="Descubra os melhores restaurantes, bares, cafés e entretenimento em Governador Valadares. Avaliações reais, promoções exclusivas e muito mais.">
+    <meta name="keywords" content="Governador Valadares, restaurantes, bares, entretenimento, turismo, gastronomia">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="O Que Fazer em GV - Descubra Governador Valadares">
+    <meta property="og:description" content="A melhor plataforma para descobrir estabelecimentos incríveis em GV">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://oquefazeremgv.com.br">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="loading-text">Carregando O Que Fazer em GV...</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>O Que Fazer em GV</h1>
+                        <span>Descubra Governador Valadares</span>
+                    </div>
+                </div>
+
+                <nav class="nav" id="mainNav">
+                    <a href="#home" class="nav-link active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="#estabelecimentos" class="nav-link" data-section="estabelecimentos">
+                        <i class="fas fa-store"></i>
+                        <span>Estabelecimentos</span>
+                    </a>
+                    <a href="#mapa" class="nav-link" data-section="mapa">
+                        <i class="fas fa-map"></i>
+                        <span>Mapa</span>
+                    </a>
+                    <a href="promotions.php" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <span>Promoções</span>
+                    </a>
+                    <a href="events.php" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        <span>Eventos</span>
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <span>Mais</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="about.php"><i class="fas fa-info-circle"></i> Sobre</a>
+                            <a href="contact.php"><i class="fas fa-envelope"></i> Contato</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="user-section" id="userSection">
+                        <div class="auth-buttons" id="authButtons">
+                            <a href="auth/login.php" class="btn-login">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <span>Entrar</span>
+                            </a>
+                            <a href="auth/register.php" class="btn-register">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Cadastrar</span>
+                            </a>
+                            <a href="admin/login.php" class="btn-admin">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Admin</span>
+                            </a>
+                        </div>
+
+                        <div class="user-menu" id="userMenu" style="display: none;">
+                            <div class="user-avatar" id="userAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="user-dropdown">
+                                <div class="user-info">
+                                    <span class="user-name" id="userName">Usuário</span>
+                                    <span class="user-email" id="userEmail">email@exemplo.com</span>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="profile.php"><i class="fas fa-user"></i> Meu Perfil</a>
+                                <a href="my-favorites.php"><i class="fas fa-heart"></i> Favoritos</a>
+                                <a href="my-reviews.php"><i class="fas fa-star"></i> Avaliações</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="auth/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+
+                    <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Mais de 500 estabelecimentos</span>
+                </div>
+
+                <h1 class="hero-title">
+                    Descubra os
+                    <span class="highlight">melhores lugares</span>
+                    de Governador Valadares
+                </h1>
+
+                <p class="hero-subtitle">
+                    Encontre restaurantes incríveis, bares animados, cafés aconchegantes e muito mais.
+                    Tudo com avaliações reais e informações atualizadas.
+                </p>
+
+                <!-- Enhanced Search -->
+                <div class="hero-search">
+                    <div class="search-container">
+                        <div class="search-input-group">
+                            <div class="search-icon">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <input type="text" id="heroSearchInput" placeholder="O que você está procurando?">
+                            <button class="search-btn" id="heroSearchBtn">
+                                <i class="fas fa-search"></i>
+                                <span>Buscar</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+
+                <!-- Quick Categories -->
+
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="totalEstablishments">500+</div>
+                        <div class="stat-label">Estabelecimentos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Avaliação Média</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15k+</div>
+                        <div class="stat-label">Avaliações</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10k+</div>
+                        <div class="stat-label">Usuários</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-star"></i>
+                    <span>Destaques</span>
+                </div>
+                <h2>Estabelecimentos em Destaque</h2>
+                <p>Os lugares mais populares e bem avaliados de Governador Valadares</p>
+                <br><br><br>
+                <div class="quick-categories">
+                    <div class="category-item" data-category="restaurante">
+                        <div class="category-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <span>Restaurantes</span>
+                    </div>
+                    <div class="category-item" data-category="bar">
+                        <div class="category-icon">
+                            <i class="fas fa-glass-cheers"></i>
+                        </div>
+                        <span>Bares</span>
+                    </div>
+                    <div class="category-item" data-category="cafe">
+                        <div class="category-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <span>Cafés</span>
+                    </div>
+                    <div class="category-item" data-category="cultura">
+                        <div class="category-icon">
+                            <i class="fas fa-theater-masks"></i>
+                        </div>
+                        <span>Cultura</span>
+                    </div>
+                    <div class="category-item" data-category="todos">
+                        <div class="category-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <span>Ver Todos</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="featured-grid" id="featuredGrid">
+                <!-- Cards serão inseridos via JavaScript -->
+            </div>
+
+            <div class="section-footer">
+                <a href="#estabelecimentos" class="btn btn-outline">
+                    <span>Ver Todos os Estabelecimentos</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Filters -->
+    <section class="filters-section" id="filtros">
+        <div class="container">
+            <div class="filters-header">
+                <h3>Encontre exatamente o que procura</h3>
+                <p>Use nossos filtros avançados para descobrir o lugar perfeito</p>
+            </div>
+
+            <div class="filters-container">
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label>Categoria</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="">Todas as categorias</option>
+                            <option value="restaurante">Restaurantes</option>
+                            <option value="bar">Bares</option>
+                            <option value="cafe">Cafés</option>
+                            <option value="cultura">Cultura</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Bairro</label>
+                        <select id="neighborhoodFilter" class="filter-select">
+                            <option value="">Todos os bairros</option>
+                            <option value="centro">Centro</option>
+                            <option value="ibituruna">Ibituruna</option>
+                            <option value="santa-terezinha">Santa Terezinha</option>
+                            <option value="grã-duquesa">Grã Duquesa</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Preço</label>
+                        <select id="priceFilter" class="filter-select">
+                            <option value="">Qualquer preço</option>
+                            <option value="1">$ - Econômico</option>
+                            <option value="2">$$ - Moderado</option>
+                            <option value="3">$$$ - Premium</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Avaliação</label>
+                        <select id="ratingFilter" class="filter-select">
+                            <option value="">Qualquer avaliação</option>
+                            <option value="4">4+ estrelas</option>
+                            <option value="3">3+ estrelas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filters-row">
+                    <div class="filter-group">
+                        <label>Ordenar por</label>
+                        <select id="sortFilter" class="filter-select">
+                            <option value="relevance">Mais Relevantes</option>
+                            <option value="rating">Melhor Avaliados</option>
+                            <option value="name">Nome A-Z</option>
+                            <option value="newest">Mais Recentes</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="openNowFilter">
+                                <span class="checkmark"></span>
+                                <span class="label-text">Aberto agora</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <div class="view-controls">
+                            <button class="view-btn active" data-view="grid" title="Visualização em grade">
+                                <i class="fas fa-th"></i>
+                            </button>
+                            <button class="view-btn" data-view="list" title="Visualização em lista">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <button class="btn btn-primary" id="applyFilters">
+                            <i class="fas fa-filter"></i>
+                            <span>Aplicar Filtros</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="active-filters" id="activeFilters"></div>
+        </div>
+    </section>
+
+    <!-- Establishments Section -->
+    <section class="establishments-section" id="estabelecimentos">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-store"></i>
+                    <span>Estabelecimentos</span>
+                </div>
+                <h2>Explore Governador Valadares</h2>
+                <p>Descubra os melhores lugares para comer, beber e se divertir</p>
+            </div>
+
+            <div class="establishments-controls">
+                <div class="results-info">
+                    <span id="resultsCount">Carregando...</span>
+                </div>
+                <div class="view-options">
+                    <button class="view-option active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-option" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="establishments-grid" id="establishmentsList">
+                <!-- Cards serão inseridos via JavaScript -->
+            </div>
+
+            <div class="load-more-container">
+                <button class="btn btn-outline btn-lg" id="loadMoreBtn" style="display: none;">
+                    <span>Carregar Mais</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="mapa">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-map"></i>
+                    <span>Localização</span>
+                </div>
+                <h2>Mapa Interativo</h2>
+                <p>Explore os estabelecimentos no mapa de Governador Valadares</p>
+            </div>
+
+            <div class="map-container-wrapper">
+                <div class="map-controls">
+                    <div class="map-filters">
+                        <button class="map-filter-btn active" data-category="todos">
+                            <i class="fas fa-th"></i>
+                            <span>Todos</span>
+                        </button>
+                        <button class="map-filter-btn" data-category="restaurante">
+                            <i class="fas fa-utensils"></i>
+                            <span>Restaurantes</span>
+                        </button>
+                        <button class="map-filter-btn" data-category="bar">
+                            <i class="fas fa-glass-cheers"></i>
+                            <span>Bares</span>
+                        </button>
+                        <button class="map-filter-btn" data-category="cafe">
+                            <i class="fas fa-coffee"></i>
+                            <span>Cafés</span>
+                        </button>
+                    </div>
+
+                    <div class="map-actions">
+                        <button class="btn btn-secondary" id="centerMapBtn">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Centralizar</span>
+                        </button>
+                        <button class="btn btn-secondary" id="fullscreenMapBtn">
+                            <i class="fas fa-expand"></i>
+                            <span>Tela Cheia</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="map-container" id="map">
+                    <div class="map-loading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span>Carregando mapa...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Preview -->
+    <section class="promotions-preview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-tags"></i>
+                    <span>Ofertas</span>
+                </div>
+                <h2>Promoções Especiais</h2>
+                <p>Aproveite as melhores ofertas dos estabelecimentos parceiros</p>
+            </div>
+
+            <div class="promotions-slider" id="promotionsSlider">
+                <!-- Promoções serão carregadas via JavaScript -->
+            </div>
+
+            <div class="section-footer">
+                <a href="promotions.php" class="btn btn-primary">
+                    <span>Ver Todas as Promoções</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Preview -->
+    <section class="events-preview">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-calendar"></i>
+                    <span>Agenda</span>
+                </div>
+                <h2>Próximos Eventos</h2>
+                <p>Não perca os melhores eventos da cidade</p>
+            </div>
+
+            <div class="events-slider" id="eventsSlider">
+                <!-- Eventos serão carregados via JavaScript -->
+            </div>
+
+            <div class="section-footer">
+                <a href="events.php" class="btn btn-primary">
+                    <span>Ver Todos os Eventos</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>Fique por dentro das novidades</h3>
+                    <p>Receba promoções exclusivas, novos estabelecimentos e eventos diretamente no seu email</p>
+                </div>
+                <div class="newsletter-form">
+                    <form id="newsletterForm">
+                        <div class="input-group">
+                            <input type="email" placeholder="Seu melhor email" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Inscrever-se</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>O Que Fazer em GV</h3>
+                            <p>Descubra Governador Valadares</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        A plataforma definitiva para descobrir os melhores estabelecimentos de Governador Valadares.
+                        Conectamos pessoas aos lugares mais incríveis da nossa cidade.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="WhatsApp" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#estabelecimentos">Estabelecimentos</a></li>
+                        <li><a href="#mapa">Mapa</a></li>
+                        <li><a href="promotions.php">Promoções</a></li>
+                        <li><a href="events.php">Eventos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Categorias</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-category="restaurante">Restaurantes</a></li>
+                        <li><a href="#" data-category="bar">Bares</a></li>
+                        <li><a href="#" data-category="cafe">Cafés</a></li>
+                        <li><a href="#" data-category="cultura">Cultura</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.php">Sobre Nós</a></li>
+                        <li><a href="contact.php">Contato</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="admin/login.php">Área Admin</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@oquefazeremgv.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(33) 99999-9999</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Governador Valadares, MG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 O Que Fazer em GV. Todos os direitos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidade</a>
+                        <a href="#">Termos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Modal for Establishment Details -->
+    <div class="modal" id="establishmentModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

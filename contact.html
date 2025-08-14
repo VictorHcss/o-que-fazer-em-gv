@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - O Que Fazer em GV</title>
+    <meta name="description" content="Entre em contato conosco. Tire suas dúvidas, envie sugestões ou solicite informações sobre o O Que Fazer em GV.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📍</text></svg>">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        .contact-page {
+            padding-top: 80px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .contact-hero {
+            padding: var(--space-20) 0;
+            text-align: center;
+            color: var(--text-white);
+        }
+
+        .contact-hero h1 {
+            font-family: var(--font-secondary);
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            margin-bottom: var(--space-6);
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-hero p {
+            font-size: var(--text-xl);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: var(--leading-relaxed);
+        }
+
+        .contact-content {
+            background: var(--white);
+            margin-top: var(--space-16);
+        }
+
+        .contact-section {
+            padding: var(--space-20) 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: start;
+        }
+
+        .contact-info {
+            background: var(--gray-50);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-secondary);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-8);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+            padding: var(--space-4);
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-primary);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: var(--text-lg);
+            flex-shrink: 0;
+        }
+
+        .contact-item-content h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+
+        .contact-item-content p {
+            color: var(--text-muted);
+            line-height: var(--leading-relaxed);
+        }
+
+        .contact-item-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item-content a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-10);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-form h3 {
+            font-family: var(--font-secondary);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .contact-form p {
+            color: var(--text-muted);
+            margin-bottom: var(--space-8);
+            line-height: var(--leading-relaxed);
+        }
+
+        .form-group {
+            margin-bottom: var(--space-6);
+        }
+
+        .form-group label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: var(--space-2);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--space-4);
+            border: 1px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            color: var(--text-primary);
+            background: var(--white);
+            transition: all var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-primary);
+            color: var(--text-white);
+            border: none;
+            border-radius: var(--radius-lg);
+            padding: var(--space-4) var(--space-6);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .faq-section {
+            background: var(--gray-50);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .faq-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-3);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .faq-question i {
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            color: var(--text-muted);
+            line-height: var(--leading-relaxed);
+        }
+
+        .social-section {
+            text-align: center;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-12);
+        }
+
+        .social-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .social-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .social-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--space-4);
+            font-size: var(--text-2xl);
+            color: var(--text-white);
+        }
+
+        .social-card.facebook .social-icon {
+            background: #1877f2;
+        }
+
+        .social-card.instagram .social-icon {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .social-card.whatsapp .social-icon {
+            background: #25d366;
+        }
+
+        .social-card.twitter .social-icon {
+            background: #1da1f2;
+        }
+
+        .social-card h4 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .social-card p {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: var(--text-3xl);
+            }
+
+            .contact-hero p {
+                font-size: var(--text-lg);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-8);
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: var(--space-6);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-grid,
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>O Que Fazer em GV</h1>
+                        <span>Descubra Governador Valadares</span>
+                    </div>
+                </a>
+                
+                <nav class="nav" id="mainNav">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </a>
+                    <a href="index.html#estabelecimentos" class="nav-link">
+                        <i class="fas fa-store"></i>
+                        <span>Estabelecimentos</span>
+                    </a>
+                    <a href="index.html#mapa" class="nav-link">
+                        <i class="fas fa-map"></i>
+                        <span>Mapa</span>
+                    </a>
+                    <a href="promotions.php" class="nav-link">
+                        <i class="fas fa-tags"></i>
+                        <span>Promoções</span>
+                    </a>
+                    <a href="events.php" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        <span>Eventos</span>
+                    </a>
+                    <div class="nav-dropdown">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <i class="fas fa-ellipsis-h"></i>
+                            <span>Mais</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="about.html"><i class="fas fa-info-circle"></i> Sobre</a>
+                            <a href="contact.html" class="active"><i class="fas fa-envelope"></i> Contato</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                <div class="header-actions">
+                    <div class="auth-buttons">
+                        <a href="auth/login.php" class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Entrar</span>
+                        </a>
+                        <a href="auth/register.php" class="btn-register">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Cadastrar</span>
+                        </a>
+                        <a href="admin/login.php" class="btn-admin">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Admin</span>
+                        </a>
+                    </div>
+                    
+                    <div class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    
+                    <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contact Page -->
+    <div class="contact-page">
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <div class="container">
+                <h1><i class="fas fa-envelope"></i> Entre em Contato</h1>
+                <p>Estamos aqui para ajudar! Tire suas dúvidas, envie sugestões ou solicite informações sobre nossa plataforma.</p>
+            </div>
+        </section>
+
+        <!-- Content -->
+        <div class="contact-content">
+            <!-- Contact Section -->
+            <section class="contact-section">
+                <div class="container">
+                    <div class="contact-grid">
+                        <!-- Contact Info -->
+                        <div class="contact-info">
+                            <h3>Informações de Contato</h3>
+                            
+                            <div class="contact-item">
+                                <div class="contact-item-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-item-content">
+                                    <h4>Email</h4>
+                                    <p><a href="mailto:contato@oquefazeremgv.com.br">contato@oquefazeremgv.com.br</a></p>
+                                    <p>Respondemos em até 24 horas</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-item-content">
+                                    <h4>Telefone</h4>
+                                    <p><a href="tel:+5533999999999">(33) 99999-9999</a></p>
+                                    <p>Segunda a Sexta, 8h às 18h</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">
+                                    <i class="fab fa-whatsapp"></i>
+                                </div>
+                                <div class="contact-item-content">
+                                    <h4>WhatsApp</h4>
+                                    <p><a href="https://wa.me/5533999999999" target="_blank">(33) 99999-9999</a></p>
+                                    <p>Atendimento rápido e direto</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-item-content">
+                                    <h4>Localização</h4>
+                                    <p>Governador Valadares, MG</p>
+                                    <p>Atendemos toda a região</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <div class="contact-item-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div class="contact-item-content">
+                                    <h4>Horário de Funcionamento</h4>
+                                    <p>Segunda a Sexta: 8h às 18h</p>
+                                    <p>Sábado: 9h às 14h</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <div class="contact-form">
+                            <h3>Envie sua Mensagem</h3>
+                            <p>Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+                            
+                            <form id="contactForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Nome Completo *</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="phone">Telefone</label>
+                                        <input type="tel" id="phone" name="phone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subject">Assunto *</label>
+                                        <select id="subject" name="subject" required>
+                                            <option value="">Selecione um assunto</option>
+                                            <option value="duvida">Dúvida Geral</option>
+                                            <option value="sugestao">Sugestão</option>
+                                            <option value="problema">Reportar Problema</option>
+                                            <option value="estabelecimento">Cadastrar Estabelecimento</option>
+                                            <option value="parceria">Parceria</option>
+                                            <option value="outro">Outro</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Mensagem *</label>
+                                    <textarea id="message" name="message" placeholder="Descreva sua mensagem detalhadamente..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="submit-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span>Enviar Mensagem</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="contact-section faq-section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge">
+                            <i class="fas fa-question-circle"></i>
+                            <span>FAQ</span>
+                        </div>
+                        <h2>Perguntas Frequentes</h2>
+                        <p>Encontre respostas rápidas para as dúvidas mais comuns</p>
+                    </div>
+                    
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-store"></i>
+                                Como cadastrar meu estabelecimento?
+                            </div>
+                            <div class="faq-answer">
+                                Entre em contato conosco através do formulário ou WhatsApp. Nossa equipe irá orientá-lo sobre o processo de cadastro e os benefícios da plataforma.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-user"></i>
+                                Como criar uma conta de usuário?
+                            </div>
+                            <div class="faq-answer">
+                                Clique em "Cadastrar" no menu superior e preencha seus dados. O cadastro é gratuito e permite avaliar estabelecimentos e salvar favoritos.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-star"></i>
+                                Como funcionam as avaliações?
+                            </div>
+                            <div class="faq-answer">
+                                Usuários cadastrados podem avaliar estabelecimentos de 1 a 5 estrelas e deixar comentários. Todas as avaliações passam por moderação.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-tags"></i>
+                                Como funcionam as promoções?
+                            </div>
+                            <div class="faq-answer">
+                                Estabelecimentos parceiros podem cadastrar promoções especiais que aparecem na plataforma. Usuários recebem notificações sobre ofertas próximas.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-mobile-alt"></i>
+                                A plataforma tem aplicativo móvel?
+                            </div>
+                            <div class="faq-answer">
+                                Atualmente oferecemos uma versão web totalmente responsiva. Um aplicativo móvel está em desenvolvimento para 2024.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <i class="fas fa-shield-alt"></i>
+                                Meus dados estão seguros?
+                            </div>
+                            <div class="faq-answer">
+                                Sim! Utilizamos as mais modernas tecnologias de segurança e criptografia para proteger todos os dados dos usuários e estabelecimentos.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Section -->
+            <section class="contact-section social-section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-badge">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Redes Sociais</span>
+                        </div>
+                        <h2>Siga-nos nas Redes Sociais</h2>
+                        <p>Fique por dentro das novidades e interaja conosco</p>
+                    </div>
+                    
+                    <div class="social-grid">
+                        <a href="#" class="social-card facebook">
+                            <div class="social-icon">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <h4>Facebook</h4>
+                            <p>Novidades e interação com a comunidade</p>
+                        </a>
+
+                        <a href="#" class="social-card instagram">
+                            <div class="social-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h4>Instagram</h4>
+                            <p>Fotos dos melhores estabelecimentos</p>
+                        </a>
+
+                        <a href="#" class="social-card whatsapp">
+                            <div class="social-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h4>WhatsApp</h4>
+                            <p>Atendimento direto e rápido</p>
+                        </a>
+
+                        <a href="#" class="social-card twitter">
+                            <div class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <h4>Twitter</h4>
+                            <p>Atualizações em tempo real</p>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h3>O Que Fazer em GV</h3>
+                            <p>Descubra Governador Valadares</p>
+                        </div>
+                    </div>
+                    <p class="footer-description">
+                        A plataforma definitiva para descobrir os melhores estabelecimentos de Governador Valadares. 
+                        Conectamos pessoas aos lugares mais incríveis da nossa cidade.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" aria-label="Instagram" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="WhatsApp" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="#" aria-label="Twitter" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Navegação</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="index.html#estabelecimentos">Estabelecimentos</a></li>
+                        <li><a href="index.html#mapa">Mapa</a></li>
+                        <li><a href="promotions.php">Promoções</a></li>
+                        <li><a href="events.php">Eventos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Categorias</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html" data-category="restaurante">Restaurantes</a></li>
+                        <li><a href="index.html" data-category="bar">Bares</a></li>
+                        <li><a href="index.html" data-category="cafe">Cafés</a></li>
+                        <li><a href="index.html" data-category="cultura">Cultura</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">Sobre Nós</a></li>
+                        <li><a href="contact.html">Contato</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Privacidade</a></li>
+                        <li><a href="admin/login.php">Área Admin</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@oquefazeremgv.com.br</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>(33) 99999-9999</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Governador Valadares, MG</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 O Que Fazer em GV. Todos os direitos reservados.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Política de Privacidade</a>
+                        <a href="#">Termos de Uso</a>
+                        <a href="#">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Scripts -->
+    <script>
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Enviando...</span>';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                // Show success notification
+                showNotification('Mensagem enviada com sucesso!', 'Entraremos em contato em breve.', 'success');
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        // Notification System
+        function showNotification(title, message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            notification.innerHTML = `
+                <div class="notification-header">
+                    <span class="notification-title">${title}</span>
+                    <button class="notification-close">&times;</button>
+                </div>
+                <div class="notification-message">${message}</div>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => container.removeChild(notification), 300);
+            }, 5000);
+            
+            // Close button handler
+            notification.querySelector('.notification-close').addEventListener('click', () => {
+                notification.classList.remove('show');
+                setTimeout(() => container.removeChild(notification), 300);
+            });
+        }
+
+        // Back to top functionality
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+            const icon = themeToggle.querySelector('i');
+            icon.className = body.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const nav = document.getElementById('mainNav');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form validation
+        const form = document.getElementById('contactForm');
+        const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+        
+        inputs.forEach(input => {
+            input.addEventListener('blur', validateField);
+            input.addEventListener('input', clearError);
+        });
+        
+        function validateField(e) {
+            const field = e.target;
+            const value = field.value.trim();
+            
+            if (!value) {
+                showFieldError(field, 'Este campo é obrigatório');
+                return false;
+            }
+            
+            if (field.type === 'email' && !isValidEmail(value)) {
+                showFieldError(field, 'Digite um email válido');
+                return false;
+            }
+            
+            clearFieldError(field);
+            return true;
+        }
+        
+        function clearError(e) {
+            clearFieldError(e.target);
+        }
+        
+        function showFieldError(field, message) {
+            clearFieldError(field);
+            field.style.borderColor = '#ef4444';
+            
+            const error = document.createElement('div');
+            error.className = 'field-error';
+            error.style.color = '#ef4444';
+            error.style.fontSize = '0.875rem';
+            error.style.marginTop = '0.25rem';
+            error.textContent = message;
+            
+            field.parentNode.appendChild(error);
+        }
+        
+        function clearFieldError(field) {
+            field.style.borderColor = '';
+            const error = field.parentNode.querySelector('.field-error');
+            if (error) {
+                error.remove();
+            }
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
